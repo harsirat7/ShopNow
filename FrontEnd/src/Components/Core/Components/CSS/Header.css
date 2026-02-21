@@ -1,0 +1,99 @@
+.headerContainer {
+    height: 100px;
+    width: 100%;
+    /* background-color: green; */
+}
+
+.mainTitleContaier {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.mainTitle {
+    font-size: 65px;
+    font-family: 'Brush Script MT', 'cursive';
+    color: #FA8112;
+
+}
+
+.linksContainer {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 1rem;
+}
+
+.links {
+    text-decoration: none;
+    background-color: black;
+    color: whitesmoke;
+    font-size: 30px;
+    border-style: none;
+    border-radius: 1000px;
+    width: 100%;
+    font-family: fantasy;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.links::after {
+    content: '';
+    position: absolute;
+    height: 107%;
+    width: 102%;
+    border-radius: 1000px;
+    background-image: linear-gradient(to bottom right, #008cff, #e100ff);
+    z-index: -1;
+}
+
+.links:hover::after {
+    z-index: 0;
+    box-shadow: 40px 0px 100px #008cff, -40px 0px 100px #e100ff;
+}
+
+
+.linkText {
+    z-index: 5;
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.linkText:hover {
+    color: whitesmoke;
+    z-index: 5;
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchContainer {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.search {
+    font-family: fantasy;
+    color: #FA8112;
+}
+
+.searchBox {
+    border-style: none;
+    border-radius: 1000px;
+    height: 50px;
+    text-align: center;
+}
