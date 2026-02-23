@@ -4,6 +4,7 @@ import CoreFooter from './Components/CoreFooter'
 import "./Components/CSS/LogIn.css";
 import { AuthContext } from '../../Context/authContext';
 import { useNavigate } from 'react-router';
+import AuthAPI from './Components/CoreAPI/AuthAPI';
 
 export default function UserPassWord() {
 
@@ -25,46 +26,16 @@ export default function UserPassWord() {
 
     const handleLogSubmit = async(e)=>{
         e.preventDefault();
-        let {accountDetail,currentPassword}=userInput;
-        accountDetail=accountDetail.trim();
-        currentPassword=currentPassword.trim();
+        
+    const result=  await  AuthAPI({userInput});
 
-        if(accountDetail.length==0){
-            alert("Please Enter A valid Email or Phone Number");
-            return;
-        }
-        else if(currentPassword.length==0){
-            alert("Please Enter A valid Password");
-            return;
-        }
-
-        if(accountDetail.includes("@") && accountDetail.includes(".")){
-            var userMailAddress=accountDetail;
-        }
-        else if(accountDetail.length==10){
-            var userPhoneNumber=accountDetail;
-        }
-        else{
-            alert("Please Enter a Valid Information");
-            return;
-        }
-
-        const respones = await fetch("http://localhost:3000/user/checkUser",{
-            method:"POST",
-            headers:{
-                "Content-Type": "application/json",
-            },
-            body:JSON.stringify({userMailAddress,userPhoneNumber,currentPassword}),
-        });
-
-        const result= await respones.json();
-
-        if(result.user=='User not found'){
-            alert("some error");
-        }
-        else{
+        if(result.user=='User Found'){
             navigate("/");
             setUserLoginedIn(true);
+        }
+        
+        else{
+            alert(`${result.user} from else`);
         }
 
 

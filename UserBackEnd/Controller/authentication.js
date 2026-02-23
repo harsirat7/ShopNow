@@ -5,7 +5,7 @@ class Auth{
 
         let data={}
 
-        if(req.body.userMailAddress==undefined){
+        if(!req.body.userMailAddress){
              data={
                 userMail:null,
                 userNumber:req.body.userPhoneNumber,
@@ -28,9 +28,16 @@ class Auth{
             }
             else{
                 if(result.length>0){
-                    res.json({userInfo:result});
+                    if(result[0].password!=`${req.body.currentPassword}`){
+                        console.log(result);
+                        res.json({user:"Incorrect Password"});
+                    }
+                    else{
+                        res.json({user:"Correct Password"});
+                    }
                 }
                 else{
+                    console.log(result);
                     res.json({user:"User not found"});
                 }
             }

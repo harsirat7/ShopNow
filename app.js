@@ -3,11 +3,26 @@ const app=express();
 const port=3000;
 const cors=require("cors");
 const UserRouter=require('./Routes/userRoutes');
+const session=require("express-session");
 
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+
+// user session
+app.use(session({
+    secret:"userId",
+    resave:false,
+    saveUninitialized:false,
+    cookie:{
+        maxAge:1000*60
+    }
+}));
+
+
+
+
 
 app.use('/user',UserRouter);
 
