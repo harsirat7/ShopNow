@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import CoreRouter from "./AppRouter/CoreRouter";
 import { AuthContext } from "./Context/authContext"
-import UserRouter from "./AppRouter/UserRouter";
 import { UserAuthContext } from "./Context/UserAuthContext";
 
 function App() {
@@ -11,16 +10,12 @@ function App() {
 
   return (
     <React.Fragment>
+
       <AuthContext.Provider value={{ userLoginedIn, setUserLoginedIn }}>
-        <CoreRouter />
+        <UserAuthContext.Provider value={{ userSession, setUserSession }}>
+          <CoreRouter />
+        </UserAuthContext.Provider>
       </AuthContext.Provider>
-
-
-
-      <UserAuthContext.Provider value={{ userSession, setUserSession }}>
-        <UserRouter />
-      </UserAuthContext.Provider>
-
 
     </React.Fragment>
   );

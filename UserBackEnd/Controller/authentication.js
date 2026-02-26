@@ -46,7 +46,16 @@ class Auth {
 
     };
 
-    
+    checkUserSession(req,res){
+        if(req.session.userId){
+            res.json({UserSession:true});
+        }
+        else{
+            res.json({UserSession:false});
+        }
+    }
+
+
 
 
 };

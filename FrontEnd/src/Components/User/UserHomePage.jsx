@@ -1,25 +1,27 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import UserHeader from './Components/UserHeader';
-import { Outlet, useNavigate } from 'react-router';
+import { Outlet, Navigate } from 'react-router-dom';
 import { UserAuthContext } from '../../Context/UserAuthContext';
+import AuthAPI from './Components/UserAPI/AuthAPI';
 export default function UserHomePage() {
 
-  const {userSession}=useContext(UserAuthContext);
-  const navigate=useNavigate();
+  const { userSession } = useContext(UserAuthContext);
+
+  useEffect(()=>{
+    AuthAPI;
+  },[]);
+
+  if (!userSession) {
+    return <Navigate to='/' replace />
+  }
+
   return (
-  <React.Fragment>
+    <React.Fragment>
+      <UserHeader />
+      <Outlet />
 
-          {
-            userSession ? 
-            <>
-            <UserHeader/>
-        <Outlet/>
-            
-            </>
-            :
-            navigate("/")
-          }
 
-  </React.Fragment>  
+    </React.Fragment>
   );
 };
+
