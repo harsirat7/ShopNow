@@ -6,7 +6,10 @@ const UserRouter=require('./Routes/userRoutes');
 const session=require("express-session");
 
 
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
@@ -16,7 +19,7 @@ app.use(session({
     resave:false,
     saveUninitialized:false,
     cookie:{
-        maxAge:1000*60
+        maxAge:1000*60*5
     }
 }));
 

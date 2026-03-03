@@ -29,29 +29,32 @@ class Auth {
             else {
                 if (result.length > 0) {
                     if (result[0].password != `${req.body.currentPassword}`) {
-                        console.log(result);
                         res.json({ user: "Incorrect Password" });
                     }
                     else {
-                        req.session.userId=result[0].id;
+                        req.session.userId = result[0].id;
                         res.json({ user: "Correct Password" });
                     }
                 }
                 else {
-                    console.log(result);
                     res.json({ user: "User not found" });
                 }
             }
         });
-
     };
 
-    checkUserSession(req,res){
-        if(req.session.userId){
-            res.json({UserSession:true});
+    checkUserSession(req, res) {
+        if (req.session.userId) {
+            console.log("True")
+            res.json({ UserSession: true });
         }
-        else{
-            res.json({UserSession:false});
+        else {
+            console.log("False");
+            console.log(req.session.userId);
+
+
+
+            res.json({ UserSession: false });
         }
     }
 

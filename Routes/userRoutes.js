@@ -8,6 +8,7 @@ userRotuer.post("/checkUser",(req,res)=>{
 });
 
 userRotuer.get("/checkUserSession",(req,res)=>{
+    // console.log("Fine till here");
     UserAuth.checkUserSession(req,res);
 });
 

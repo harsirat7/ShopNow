@@ -1,27 +1,33 @@
-import React, { useContext, useEffect, useState } from 'react'
-import UserHeader from './Components/UserHeader';
-import { Outlet, Navigate } from 'react-router-dom';
-import { UserAuthContext } from '../../Context/UserAuthContext';
-import AuthAPI from './Components/UserAPI/AuthAPI';
+import React from "react";
+import { useContext,useEffect,useState } from "react";
+import { Navigate } from "react-router";
+import AuthAPI from "./Components/UserAPI/AuthAPI";
+import { UserAuthContext } from "../../Context/UserAuthContext";
+
+// const { userSession } = useContext(UserAuthContext);
+
 export default function UserHomePage() {
 
-  const { userSession } = useContext(UserAuthContext);
+  const { userSession, setUserSession } = useContext(UserAuthContext);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-    AuthAPI;
-  },[]);
+  useEffect(() => {
+    const checkSession = async () => {
+      const session = await AuthAPI();
+      setUserSession(false);
+      setLoading(false);
+    };
 
-  if (!userSession) {
-    return <Navigate to='/' replace />
-  }
+    checkSession();
+  }, []);
+
+  if (loading) return <h1>Loading...</h1>;
+  if (!userSession) return <Navigate to="/" replace />;
 
   return (
-    <React.Fragment>
+    <>
       <UserHeader />
       <Outlet />
-
-
-    </React.Fragment>
+    </>
   );
-};
-
+}

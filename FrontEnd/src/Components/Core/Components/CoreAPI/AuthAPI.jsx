@@ -2,6 +2,7 @@ export default async function AuthAPI({ userInput }) {
 
     let { accountDetail, currentPassword } = userInput;
 
+    // debugger
     accountDetail = accountDetail.trim();
     currentPassword = currentPassword.trim();
 
