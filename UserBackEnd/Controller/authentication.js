@@ -21,7 +21,6 @@ class Auth {
         };
 
 
-
         authObject.login(data, (err, result) => {
             if (err) {
                 res.json({ result: "error" });
@@ -33,7 +32,14 @@ class Auth {
                     }
                     else {
                         req.session.userId = result[0].id;
-                        res.json({ user: "Correct Password" });
+
+                        req.session.save((err) => {
+                            if (err) {
+                                console.log(err);
+                                return res.json({ user: "session error" });
+                            }
+                            res.json({ user: "Correct Password" });
+                        });
                     }
                 }
                 else {
@@ -50,10 +56,6 @@ class Auth {
         }
         else {
             console.log("False");
-            console.log(req.session.userId);
-
-
-
             res.json({ UserSession: false });
         }
     }

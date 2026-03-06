@@ -8,13 +8,13 @@ import { UserAuthContext } from "../../Context/UserAuthContext";
 
 export default function UserHomePage() {
 
-  const { userSession, setUserSession } = useContext(UserAuthContext);
+  const { userSession } = useContext(UserAuthContext);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkSession = async () => {
       const session = await AuthAPI();
-      setUserSession(false);
+      // setUserSession(session);
       setLoading(false);
     };
 

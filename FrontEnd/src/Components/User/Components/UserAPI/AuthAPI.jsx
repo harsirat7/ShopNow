@@ -9,7 +9,10 @@ export default async function AuthAPI() {
         }
     );
 
+    const { setUserSession } = useContext(UserAuthContext);
+
     const data = await response.json();
+    setUserSession(data.UserSession)
     return data.UserSession;
 }
 

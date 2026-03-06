@@ -8,13 +8,13 @@ import AuthAPI from '../../User/Components/UserAPI/AuthAPI';
 
 export default function CoreHeader() {
 
-    useEffect(() => {
-        const checkSession = async () => {
-          await AuthAPI();
-        };
+    // useEffect(() => {
+    //     const checkSession = async () => {
+    //       await AuthAPI();
+    //     };
     
-        checkSession();
-      }, []);
+    //     checkSession();
+    //   }, []);
 
 
     const { userLoginedIn } = useContext(AuthContext);

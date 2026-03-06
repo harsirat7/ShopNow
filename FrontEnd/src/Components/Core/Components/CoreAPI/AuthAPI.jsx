@@ -35,6 +35,7 @@ export default async function AuthAPI({ userInput }) {
         headers: {
             "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
             userMailAddress,
             userPhoneNumber,
