@@ -4,6 +4,7 @@ import HomePage from '../Components/Core/HomePage'
 import UserPassWord from '../Components/Core/UserPassWord'
 import Electronics from '../Components/Core/Electronics'
 import UserHomePage from '../Components/User/UserHomePage'
+import UserProfile from '../Components/User/Components/Body/UserProfile'
 
 export default function CoreRouter() {
   return (
@@ -13,7 +14,7 @@ export default function CoreRouter() {
       <Route path='/Login' element={<UserPassWord />} />
 
       <Route path='/userDashBoard' element={<UserHomePage />}>
-        <Route path='Profile' />
+        <Route index path='Profile' element={<UserProfile/>}/>
         <Route path='orders' />
         <Route path='sellProduct' />
         <Route path='Inventory' />
